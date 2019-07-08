@@ -1,9 +1,20 @@
 ## Cài đặt và cấu hình filebeat để gửi log đến Logstash 
 
 
-### 1. Beats là gì ?
+### 1. Filebeat là gì ?
 
-#### filebeat hoạt động như thế nào ?
+Filebeat là một công cụ dùng để gửi file log từ client lên đến server ELK ( có nhiều kiểu server quản lý log nhưng ở đaay mình dùng ELK )
+
+#### Mô hình hoạt động của filebeat ...
+(  Hãy đọc phần này khi bạn đã biết qua Elasticsearch và Logstash có những nhiệm vụ gì )
+
+<img src="https://www.elastic.co/guide/en/beats/filebeat/7.x/images/filebeat.png">
+
+Khi filebeat chạy , nó sẽ chạy một hoặc nhiều  tiến trình input  có đường đẫn đến thư mục chưa log . Với mỗi thư mục chưa log filebeat sẽ tiến hành chạy một ` harvester ` ( harvestor có nhiệm vụ đọc dữ liệu trong từng file log ) để gửi  dữ liệu lên ` Spooler ` ( là nươi tổng hợp lại tất cả các nội dung của các file log ) và sau đó spooler sẽ chuyển dữ liệu đến nơi mà Filebeat chỉ định output tại file configured .
+
+ Output có thể gửi trực tiếp lên Elasticsearch hoặc gửi qua logstash để xử lý ( với hệ thống lớn có nhiều dữ liệu gửi lên sẽ có thêm Kafka và Redis là cache để chuyển dữ liệu lên server lưu trữ data)
+
+#### Filebeat module ( watting update ) 
 
 ### 2. Cài đặt filebeat từ client CentOS vè ELLK Stack 
 
